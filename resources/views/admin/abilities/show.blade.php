@@ -1,45 +1,41 @@
-@extends('layouts.admin')
+@extends('layouts.admin2')
 @section('content')
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card-box">
+                    <h4>{{ trans('global.show') }} {{ trans('cruds.ability.title') }}</h4>
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.ability.title') }}
-    </div>
-
-    <div class="card-body">
-        <div class="mb-2">
-            <table class="table table-bordered table-striped">
-                <tbody>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.ability.fields.id') }}
-                        </th>
-                        <td>
-                            {{ $ability->id }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.ability.fields.name') }}
-                        </th>
-                        <td>
-                            {{ $ability->name }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
-                {{ trans('global.back_to_list') }}
-            </a>
-        </div>
-
-        <nav class="mb-3">
-            <div class="nav nav-tabs">
-
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            {{ trans('cruds.ability.fields.id') }}
+                                        </th>
+                                        <td>
+                                            {{ $ability->id }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            {{ trans('cruds.ability.fields.name') }}
+                                        </th>
+                                        <td>
+                                            {{ $ability->name }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
+                                {{ trans('global.back_to_list') }}
+                            </a>                            
+                        </div>
+                    </div>
+                </div>
             </div>
-        </nav>
-        <div class="tab-content">
-
         </div>
     </div>
 </div>

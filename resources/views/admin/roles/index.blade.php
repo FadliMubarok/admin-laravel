@@ -1,6 +1,86 @@
-@extends('layouts.admin')
+@extends('layouts.admin2')
 @section('content')
-<div style="margin-bottom: 10px;" class="row">
+<div class="content">
+  <div class="container">
+    <div class="row m-b-5">
+      <div class="col-lg-12">
+        <a class="btn btn-success" href="{{ route("admin.roles.create") }}">
+            {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card-box">
+          <h4></h4>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="table-responsive">
+                <table id="datatable-buttons" class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th width="10">
+
+                            </th>
+                            <th>
+                                {{ trans('cruds.role.fields.id') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.role.fields.name') }}
+                            </th>
+                            <th>
+                                {{ trans('cruds.role.fields.abilities') }}
+                            </th>
+                            <th>
+                                &nbsp;
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($roles as $key => $role)
+                            <tr data-entry-id="{{ $role->id }}">
+                                <td>
+
+                                </td>
+                                <td>
+                                    {{ $role->id ?? '' }}
+                                </td>
+                                <td>
+                                    {{ $role->name ?? '' }}
+                                </td>
+                                <td>
+                                    @foreach($role->abilities->pluck('name') as $ability)
+                                        <span class="badge badge-info">{{ $ability }}</span>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.roles.show', $role->id) }}">
+                                        {{ trans('global.view') }}
+                                    </a>
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.roles.edit', $role->id) }}">
+                                        {{ trans('global.edit') }}
+                                    </a>
+                                    <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                    </form>
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{-- <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
         <a class="btn btn-success" href="{{ route("admin.roles.create") }}">
             {{ trans('global.add') }} {{ trans('cruds.role.title_singular') }}
@@ -73,11 +153,13 @@
 
 
     </div>
-</div>
+</div> --}}
 @endsection
-@section('scripts')
-@parent
-<script>
+@section('javascript')
+<script type="text/javascript">
+  TableManageButtons.init();
+</script>
+{{-- <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
@@ -119,5 +201,5 @@
     });
 })
 
-</script>
+</script> --}}
 @endsection

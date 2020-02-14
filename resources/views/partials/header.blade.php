@@ -1,21 +1,50 @@
-<div class="page-header-inner">
-    <div class="page-header-inner">
-        <div class="navbar-header">
-            <a href="{{ url('/admin/home') }}"
-               class="navbar-brand">
-                @trans('global.global_title')
-            </a>
-        </div>
-        <a href="javascript:;"
-           class="menu-toggler responsive-toggler"
-           data-toggle="collapse"
-           data-target=".navbar-collapse">
-        </a>
-
-        <div class="top-menu">
-            <ul class="nav navbar-nav pull-right">
-
-            </ul>
-        </div>
-    </div>
+<div class="topbar-left">
+    <a href="index.html" class="logo"><span>Admin<span>to</span></span><i class="zmdi zmdi-layers"></i></a>
 </div>
+
+<!-- Button mobile view to collapse sidebar menu -->
+<div class="navbar navbar-default" role="navigation">
+    <div class="container">
+
+        <!-- Page title -->
+        <ul class="nav navbar-nav navbar-left">
+            <li>
+                <button class="button-menu-mobile open-left">
+                    <i class="zmdi zmdi-menu"></i>
+                </button>
+            </li>
+            <li>
+                <h4 class="page-title"></h4>
+            </li>
+        </ul>
+
+        <!-- Right(Notification and Searchbox -->
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <!-- Notification -->
+                <div class="notification-box">
+                    <ul class="list-inline m-b-0">
+                        <li>
+                            <a href="javascript:void(0);" class="right-bar-toggle">
+                                <i class="zmdi zmdi-notifications-none"></i>
+                            </a>
+                            <div class="noti-dot">
+                                <span class="dot"></span>
+                                <span class="pulse"></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Notification bar -->
+            </li>
+            <li class="hidden-xs">
+                <form role="search" class="app-search">
+                    <input type="text" placeholder="Search..."
+                           class="form-control">
+                    <a href=""><i class="fa fa-search"></i></a>
+                </form>
+            </li>
+        </ul>
+
+    </div><!-- end container -->
+</div><!-- end navbar -->

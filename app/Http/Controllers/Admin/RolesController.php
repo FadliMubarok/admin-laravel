@@ -24,8 +24,9 @@ class RolesController extends Controller
         }
 
         $roles = Role::all();
+        $dataTable = true;
 
-        return view('admin.roles.index', compact('roles'));
+        return view('admin.roles.index', compact('roles', 'dataTable'));
     }
 
     /**

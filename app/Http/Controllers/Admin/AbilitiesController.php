@@ -23,8 +23,9 @@ class AbilitiesController extends Controller
         }
 
         $abilities = Ability::all();
+        $dataTable = true;
 
-        return view('admin.abilities.index', compact('abilities'));
+        return view('admin.abilities.index', compact('abilities', 'dataTable'));
     }
 
     /**

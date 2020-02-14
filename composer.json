@@ -6,15 +6,17 @@
     "type": "project",
     "require": {
         "php": "^7.2",
-        "fideloper/proxy": "^4.0",
         "doctrine/dbal": "^2.9",
+        "fideloper/proxy": "^4.0",
         "intervention/image": "^2.4",
         "laravel/framework": "^6.0",
+        "laravel/telescope": "^2.1",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^6.0",
         "silber/bouncer": "v1.0.0-rc.6"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "^1.0",

@@ -24,8 +24,9 @@ class UsersController extends Controller
         }
 
         $users = User::with('roles')->get();
+        $dataTable = true;
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('users', 'dataTable'));
     }
 
     /**
