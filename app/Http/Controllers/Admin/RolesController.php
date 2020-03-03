@@ -19,7 +19,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_index')) {
             return abort(401);
         }
 
@@ -36,7 +36,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_create')) {
             return abort(401);
         }
         $abilities = Ability::get()->pluck('name', 'name');
@@ -52,13 +52,13 @@ class RolesController extends Controller
      */
     public function store(StoreRolesRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_create')) {
             return abort(401);
         }
         $role = Role::create($request->all());
         $role->allow($request->input('abilities'));
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')->with('success', 'Data Berhasil Disimpan');
     }
 
 
@@ -70,7 +70,7 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_update')) {
             return abort(401);
         }
         $abilities = Ability::get()->pluck('name', 'name');
@@ -89,7 +89,7 @@ class RolesController extends Controller
      */
     public function update(UpdateRolesRequest $request, $id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_update')) {
             return abort(401);
         }
         $role = Role::findOrFail($id);
@@ -99,12 +99,12 @@ class RolesController extends Controller
         }
         $role->allow($request->input('abilities'));
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     public function show(Role $role)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_index')) {
             return abort(401);
         }
 
@@ -121,13 +121,13 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_delete')) {
             return abort(401);
         }
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('admin.roles.index');
+        return redirect()->route('admin.roles.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -137,7 +137,7 @@ class RolesController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('roles_delete')) {
             return abort(401);
         }
         Role::whereIn('id', request('ids'))->delete();

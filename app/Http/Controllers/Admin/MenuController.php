@@ -20,7 +20,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('menus_index')) {
             return abort(401);
         }        
                 
@@ -37,7 +37,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('menus_create')) {
             return abort(401);
         }
 
@@ -54,7 +54,7 @@ class MenuController extends Controller
      */
     public function store(StoreMenuRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('menus_create')) {
             return abort(401);
         }
 
@@ -75,7 +75,7 @@ class MenuController extends Controller
             Ability::insert($dataPermission);
         }
 
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.menus.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -86,7 +86,7 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('menus_index')) {
             return abort(401);
         }
 
@@ -103,7 +103,7 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('menus_update')) {
             return abort(401);
         }
 
@@ -122,7 +122,7 @@ class MenuController extends Controller
      */
     public function update(UpdateMenuRequest $request, $id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('menus_update')) {
             return abort(401);
         }
 
@@ -136,7 +136,7 @@ class MenuController extends Controller
             'order' => (isset($request->order)) ? $request->order : 0
         ]);
 
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.menus.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -147,12 +147,12 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('menus_delete')) {
             return abort(401);
         }
 
         $data = Menu::findOrFail($id)->delete();
 
-        return redirect()->route('admin.menus.index');
+        return redirect()->route('admin.menus.index')->with('success', 'Data Berhasil Disimpan');
     }
 }

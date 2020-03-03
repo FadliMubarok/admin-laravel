@@ -19,7 +19,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_index')) {
             return abort(401);
         }
 
@@ -36,7 +36,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_create')) {
             return abort(401);
         }
         $roles = Role::get()->pluck('name', 'name');
@@ -52,7 +52,7 @@ class UsersController extends Controller
      */
     public function store(StoreUsersRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_create')) {
             return abort(401);
         }
         $user = User::create($request->all());
@@ -61,7 +61,7 @@ class UsersController extends Controller
             $user->assign($role);
         }
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'Data Berhasil Disimpan');
     }
 
 
@@ -73,7 +73,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_update')) {
             return abort(401);
         }
         $roles = Role::get()->pluck('name', 'name');
@@ -92,7 +92,7 @@ class UsersController extends Controller
      */
     public function update(UpdateUsersRequest $request, $id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_update')) {
             return abort(401);
         }
         $user = User::findOrFail($id);
@@ -104,12 +104,12 @@ class UsersController extends Controller
             $user->assign($role);
         }
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     public function show(User $user)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_index')) {
             return abort(401);
         }
 
@@ -126,13 +126,13 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_delete')) {
             return abort(401);
         }
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -142,7 +142,7 @@ class UsersController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('users_delete')) {
             return abort(401);
         }
         User::whereIn('id', request('ids'))->delete();

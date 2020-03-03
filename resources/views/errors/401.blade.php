@@ -6,10 +6,8 @@
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
 
-        <title>{{ trans('panel.site_title') }}</title>    
-
         <!-- App Favicon -->
-        <link rel="shortcut icon" href="{{ asset('assets/adminto/images/favicon.ico') }}">
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
 
         <!-- App title -->
         <title>Adminto - Responsive Admin Dashboard Template</title>
@@ -30,16 +28,29 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-        <script src="{{ asset('assets/adminto/js/modernizr.min.js') }}"></script>        
+        <script src="assets/js/modernizr.min.js"></script>
+
     </head>
     <body>
+
         <div class="account-pages"></div>
         <div class="clearfix"></div>
         <div class="wrapper-page">
-            @yield('content')
-        </div>
+            <div class="ex-page-content text-center">
+                <div class="text-error">401</div>
+                <h3 class="text-uppercase font-600">Unauthorized</h3>
+                <p class="text-muted">
+                    It's looking like you may have taken a wrong turn.
+                </p>
+                <br>
+                <a class="btn btn-success waves-effect waves-light" href="{{ url()->previous() }}"> Return</a>
 
-        <script>
+            </div>
+        </div>
+        <!-- End wrapper page -->
+
+
+    	<script>
             var resizefunc = [];
         </script>
 
@@ -55,8 +66,9 @@
         <script src="{{ asset('assets/adminto/js/jquery.nicescroll.js') }}"></script>
         <script src="{{ asset('assets/adminto/js/jquery.scrollTo.min.js') }}"></script>
 
-        <!-- App js -->
+
         <script src="{{ asset('assets/adminto/js/jquery.core.js') }}"></script>
-        <script src="{{ asset('assets/adminto/js/jquery.app.js') }}"></script>            
-    </body>
+        <script src="{{ asset('assets/adminto/js/jquery.app.js') }}"></script>
+	
+	</body>
 </html>

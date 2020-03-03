@@ -25,7 +25,14 @@
                                     </p>
                                 </div>
                                 <div>
-                                    <input class="btn btn-danger" type="submit" value="{{ trans('global.save') }}">
+                                    <a href="{{ url()->previous() }}" class="btn btn-warning">
+                                        <span class="fa fa-arrow-left"></span> 
+                                         Kembali
+                                    </a>
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="fa fa-check-square"></span>
+                                        {{ trans('global.save') }}
+                                    </button> 
                                 </div>
                             </form>
                         </div>

@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'SIAPer (Sistem Informasi Akuntansi)',
+    'site_title' => 'Admin Panel',
 ];

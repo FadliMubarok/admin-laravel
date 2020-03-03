@@ -18,7 +18,7 @@ class AbilitiesController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_index')) {
             return abort(401);
         }
 
@@ -35,7 +35,7 @@ class AbilitiesController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_create')) {
             return abort(401);
         }
         return view('admin.abilities.create');
@@ -49,12 +49,12 @@ class AbilitiesController extends Controller
      */
     public function store(StoreAbilitiesRequest $request)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_create')) {
             return abort(401);
         }
         Ability::create($request->all());
 
-        return redirect()->route('admin.abilities.index');
+        return redirect()->route('admin.abilities.index')->with('success', 'Data Berhasil Disimpan');
     }
 
 
@@ -66,7 +66,7 @@ class AbilitiesController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_update')) {
             return abort(401);
         }
         $ability = Ability::findOrFail($id);
@@ -83,18 +83,18 @@ class AbilitiesController extends Controller
      */
     public function update(UpdateAbilitiesRequest $request, $id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_update')) {
             return abort(401);
         }
         $ability = Ability::findOrFail($id);
         $ability->update($request->all());
 
-        return redirect()->route('admin.abilities.index');
+        return redirect()->route('admin.abilities.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     public function show(Ability $ability)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_index')) {
             return abort(401);
         }
 
@@ -109,13 +109,13 @@ class AbilitiesController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_delete')) {
             return abort(401);
         }
         $ability = Ability::findOrFail($id);
         $ability->delete();
 
-        return redirect()->route('admin.abilities.index');
+        return redirect()->route('admin.abilities.index')->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -125,7 +125,7 @@ class AbilitiesController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('users_manage')) {
+        if (! Gate::allows('abilities_delete')) {
             return abort(401);
         }
         Ability::whereIn('id', request('ids'))->delete();
