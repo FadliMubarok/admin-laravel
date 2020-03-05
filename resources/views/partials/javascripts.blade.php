@@ -54,3 +54,9 @@
 <!-- App js -->
 <script src="{{ asset('assets/adminto/js/jquery.core.js') }}"></script>
 <script src="{{ asset('assets/adminto/js/jquery.app.js') }}"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('[data-hover="tooltip"]').tooltip();
+	});
+</script>
