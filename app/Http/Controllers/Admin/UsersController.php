@@ -26,7 +26,7 @@ class UsersController extends Controller
         $users = User::with('roles')->get();
         $dataTable = true;
 
-        return view('admin.users.index', compact('users', 'dataTable'));
+        return view('admins.adminto-hor.users.index', compact('users', 'dataTable'));
     }
 
     /**
@@ -41,7 +41,7 @@ class UsersController extends Controller
         }
         $roles = Role::get()->pluck('name', 'name');
 
-        return view('admin.users.create', compact('roles'));
+        return view('admins.adminto-hor.users.create', compact('roles'));
     }
 
     /**
@@ -80,7 +80,7 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        return view('admin.users.edit', compact('user', 'roles'));
+        return view('admins.adminto-hor.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -115,7 +115,7 @@ class UsersController extends Controller
 
         $user->load('roles');
 
-        return view('admin.users.show', compact('user'));
+        return view('admins.adminto-hor.users.show', compact('user'));
     }
 
     /**

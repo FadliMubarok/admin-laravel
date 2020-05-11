@@ -25,7 +25,7 @@ class AbilitiesController extends Controller
         $abilities = Ability::all();
         $dataTable = true;
 
-        return view('admin.abilities.index', compact('abilities', 'dataTable'));
+        return view('admins.adminto-hor.abilities.index', compact('abilities', 'dataTable'));
     }
 
     /**
@@ -38,7 +38,7 @@ class AbilitiesController extends Controller
         if (! Gate::allows('abilities_create')) {
             return abort(401);
         }
-        return view('admin.abilities.create');
+        return view('admins.adminto-hor.abilities.create');
     }
 
     /**
@@ -54,7 +54,7 @@ class AbilitiesController extends Controller
         }
         Ability::create($request->all());
 
-        return redirect()->route('admin.abilities.index')->with('success', 'Data Berhasil Disimpan');
+        return redirect()->route('admins.adminto-hor.abilities.index')->with('success', 'Data Berhasil Disimpan');
     }
 
 
@@ -71,7 +71,7 @@ class AbilitiesController extends Controller
         }
         $ability = Ability::findOrFail($id);
 
-        return view('admin.abilities.edit', compact('ability'));
+        return view('admins.adminto-hor.abilities.edit', compact('ability'));
     }
 
     /**
@@ -98,7 +98,7 @@ class AbilitiesController extends Controller
             return abort(401);
         }
 
-        return view('admin.abilities.show', compact('ability'));
+        return view('admins.adminto-hor.abilities.show', compact('ability'));
     }
 
     /**

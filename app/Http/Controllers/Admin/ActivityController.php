@@ -17,6 +17,6 @@ class ActivityController extends Controller
 
     	$dataLog = LogActivity::all();
 
-    	return view('admin.activities.index', compact('dataLog'));
+    	return view('admins.adminto-hor.activities.index', compact('dataLog'));
     }
 }

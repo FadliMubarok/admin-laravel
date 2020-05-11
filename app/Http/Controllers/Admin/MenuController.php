@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreMenuRequest;
 use App\Http\Requests\Admin\UpdateMenuRequest;
 use Auth;
+use Bouncer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Silber\Bouncer\Database\Ability;
@@ -27,7 +28,7 @@ class MenuController extends Controller
         $menus = Menu::all();
         $dataTable = true;
 
-        return view('admin.menus.index', compact('menus', 'dataTable'));
+        return view('admins.adminto-hor.menus.index', compact('menus', 'dataTable'));
     }
 
     /**
@@ -43,7 +44,7 @@ class MenuController extends Controller
 
         $parents = Menu::where('parent_id', null)->get();
 
-        return view('admin.menus.create', compact('parents'));
+        return view('admins.adminto-hor.menus.create', compact('parents'));
     }
 
     /**
@@ -69,10 +70,15 @@ class MenuController extends Controller
 
         if ($data) {
             $dataPermission = [
-                ['name' => 'manage_' .$data->label, 'menu_id' => $data->id] 
+                ['name' => strtolower(str_replace(" ", "_", $data->label)).'s_index', 'menu_id' => $data->id],
+                ['name' => strtolower(str_replace(" ", "_", $data->label)).'s_create', 'menu_id' => null],
+                ['name' => strtolower(str_replace(" ", "_", $data->label)).'s_update', 'menu_id' => null],
+                ['name' => strtolower(str_replace(" ", "_", $data->label)).'s_delete', 'menu_id' => null],
             ];
 
             Ability::insert($dataPermission);
+            $user = Auth::user();
+            Bouncer::allow($user)->to($dataPermission[0]['name']);
         }
 
         return redirect()->route('admin.menus.index')->with('success', 'Data Berhasil Disimpan');
@@ -92,7 +98,7 @@ class MenuController extends Controller
 
         $menu = Menu::findOrFail($id);        
 
-        return view('admin.menus.show', compact('menu'));
+        return view('admins.adminto-hor.menus.show', compact('menu'));
     }
 
     /**
@@ -110,7 +116,7 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($id);
         $parents = Menu::where('parent_id', null)->get();
 
-        return view('admin.menus.edit',  compact('menu', 'parents'));
+        return view('admins.adminto-hor.menus.edit',  compact('menu', 'parents'));
     }
 
     /**

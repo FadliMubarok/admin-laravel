@@ -1,13 +1,9 @@
-@extends('layouts.adminTo')
+@extends('layouts.adminTo-hor')
 @section('content')
-<div class="content">
-	<div class="container">
-		<div class="row">
-	        <div class="col-lg-12">
-	            Home
-	        </div>
-	    </div>
-	</div>    
+<div class="row">
+    <div class="col-lg-12">
+        Home
+    </div>
 </div>
 @endsection
 @section('scripts')

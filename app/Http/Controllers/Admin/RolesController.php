@@ -26,7 +26,7 @@ class RolesController extends Controller
         $roles = Role::all();
         $dataTable = true;
 
-        return view('admin.roles.index', compact('roles', 'dataTable'));
+        return view('admins.adminto-hor.roles.index', compact('roles', 'dataTable'));
     }
 
     /**
@@ -41,7 +41,7 @@ class RolesController extends Controller
         }
         $abilities = Ability::get()->pluck('name', 'name');
 
-        return view('admin.roles.create', compact('abilities'));
+        return view('admins.adminto-hor.roles.create', compact('abilities'));
     }
 
     /**
@@ -77,7 +77,7 @@ class RolesController extends Controller
 
         $role = Role::findOrFail($id);
 
-        return view('admin.roles.edit', compact('role', 'abilities'));
+        return view('admins.adminto-hor.roles.edit', compact('role', 'abilities'));
     }
 
     /**
@@ -110,7 +110,7 @@ class RolesController extends Controller
 
         $role->load('abilities');
 
-        return view('admin.roles.show', compact('role'));
+        return view('admins.adminto-hor.roles.show', compact('role'));
     }
 
     /**

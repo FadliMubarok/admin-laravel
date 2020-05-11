@@ -1,6 +1,6 @@
 <div class="sidebar-inner slimscrollleft">
 
-@include('partials.topbar')
+@include('partials.adminTo.topbar')
 
 <!--- Sidemenu -->
 <div id="sidebar-menu">
